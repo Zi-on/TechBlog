@@ -1,0 +1,12 @@
+[
+{
+    "title": "test1",
+    "body": "hey",
+    "user_id": "1"
+  },
+  {
+    "title": "test2",
+    "body": "...",
+    "user_id": "2"   
+  }
+]
