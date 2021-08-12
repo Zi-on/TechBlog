@@ -97,7 +97,6 @@ router.post('/', async (req, res) => {
         res.status(204).end();
       });
     } else {
-        console.log("hiß")
       res.status(404).end();
     }
   });

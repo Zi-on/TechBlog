@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 
 
@@ -40,9 +40,19 @@ router.get('/signup', (req, res) => {
 
 router.get('/dashboard', (req, res) => {
 // if (req.session.logged_in) {
-//     res.redirect('/dashboard');
+//     res.redirect('/');
 //     return;
 // }
 res.render('dashboard');
 });
+
+router.get('/profile', (req, res) => {
+    // if (req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    // }
+    res.render('profile');
+    });
+
+
 module.exports = router;
