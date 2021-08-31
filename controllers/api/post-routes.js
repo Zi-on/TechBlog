@@ -15,6 +15,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+// router.get('/profile', async (req, res) => {
+//     try {
+//         const postData = await Post.findAll({
+//             include: [{model: User, attributes: ['name']},
+//             {model: Comment, attributes: ['id', 'text', 'post_id', 'user_id'], include: [{model: User, attributes: ['name']}]}]
+//         });
+//         res.status(200).json(postData)
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
 router.post('/', async (req, res) => {
     try {
         const addPost = await Post.create({
