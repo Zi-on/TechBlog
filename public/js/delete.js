@@ -4,7 +4,7 @@ const deletePost = async (event) => {
     event.preventDefault();
 
     const id = event.target.getAttribute('data-id');
-
+    
     
         const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
@@ -22,4 +22,7 @@ const deletePost = async (event) => {
     
 };
 
-document.querySelector(`.new-post`).addEventListener('click', deletePost);
+
+document.querySelectorAll('.deleteBtn').forEach(item => {
+    item.addEventListener('click', deletePost);
+  })

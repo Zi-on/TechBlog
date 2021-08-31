@@ -179,4 +179,37 @@ router.get('/signup', (req, res) => {
             }
           });
 
+          router.get('/edit-post/:id', (req, res) => {
+            Post.findOne({
+              where: 
+              {
+                id: req.params.id
+              },
+              attributes: [
+                'id',
+                'title',
+                'body'
+              ],
+              include: [
+                {
+                  model: User, attributes: ['name']
+                },
+                //  {
+                //    model: Comment, attributes: ['id', 'text', 'user_id', 'post_id'],
+                //     include: [{model: Comment, attributes: ['name']}]
+                //  }
+                  ]
+            }).then(postData => {
+              if (!postData) {
+                res.status(404).json({message: 'No post found'});
+                return;
+              }
+              res.render('edit-post');
+            })
+            .catch(err => {
+              console.log(err);
+              res.status(500).json(err)
+            })
+          });
+
 module.exports = router

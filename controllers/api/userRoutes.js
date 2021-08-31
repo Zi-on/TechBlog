@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
       if (!userData) {
         res
           .status(400)
-          .json({ message: 'Incorrect email or password, please try again' });
+          .json({ message: 'Incorrect email, please try again' });
         return;
       }
   
@@ -63,6 +63,7 @@ router.post('/', async (req, res) => {
   
       req.session.save(() => {
         req.session.user_id = userData.id;
+        req.session.name = userData.name;
         req.session.logged_in = true;
         
         res.json({ user: userData, message: 'You are now logged in!' });

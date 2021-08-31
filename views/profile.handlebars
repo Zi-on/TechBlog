@@ -14,8 +14,8 @@
   <div class="card-body">
     <h5 class="card-title" id="title">{{post.title}}</h5>
     <p class="card-text" id="body">{{post.body}}</p>
-    <a href="#" class="btn-primary" type="button" data-id="{{post.id}}">Delete</a>
-    <a href="/edit-post" class="btn-primary" type="submit" >Edit</a>
+    <a href="#" class="btn-primary deleteBtn" type="button" data-id="{{post.id}}">Delete</a>
+    <a href="/edit-post/{{post.id}}" class="btn-primary"" type="submit" >Edit</a>
   </div>
   <div class="card-footer text-muted" id="name">
     created by: {{user.name}}

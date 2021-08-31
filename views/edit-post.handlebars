@@ -4,15 +4,15 @@
 
     <form class="form new-project-form">
       <div class="form-group">
-        <label for="post-title">title:</label>
-        <input class="form-input" type="text" id="title" name="post-title" />
+        <label for="post-title" id="post-id" value="{{post.id}}">title:</label>
+        <input class="form-input" type="text" id="title" name="post-title" value="{{post.title}}" />
       </div>
       <div class="form-group">
         <label for="post-body">body:</label>
-        <input class="form-input" type="text" id="body" name="post-body" />
+        <input class="form-input" type="text" id="body" name="post-body" value="{{post.body}}" />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Edit post</button>
+        <button type="submit" class="btn btn-primary editBtn" id="editBtn">Edit post</button>
       </div>
     </form>
   </div>

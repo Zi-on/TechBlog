@@ -57,4 +57,25 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    Post.update({
+        title: req.body.title,
+        body: req.body.body,
+    },
+    {
+        where: { id: req.params.id },
+    }
+    ).then(postData => {
+        if (!postData) {
+            res.status(404).json({ message: "no post with his id!" });
+            return;
+        }
+        res.json(postData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
+
 module.exports = router;
