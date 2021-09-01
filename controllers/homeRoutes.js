@@ -193,37 +193,22 @@ router.get('/signup', (req, res) => {
             }
           });
 
-          router.get('/edit-post/:id', (req, res) => {
-            Post.findOne({
-              where: 
-              {
-                id: req.params.id
-              },
-              attributes: [
-                'id',
-                'title',
-                'body'
-              ],
-              include: [
-                {
-                  model: User, attributes: ['name']
-                },
-                //  {
-                //    model: Comment, attributes: ['id', 'text', 'user_id', 'post_id'],
-                //     include: [{model: Comment, attributes: ['name']}]
-                //  }
-                  ]
-            }).then(postData => {
-              if (!postData) {
-                res.status(404).json({message: 'No post found'});
-                return;
-              }
-              res.render('edit-post');
-            })
-            .catch(err => {
+          router.get('/edit-post/:id', withAuth, async (req, res) => {
+            try {
+              const postData = await Post.findByPk(req.params.id, {
+                include: [
+                  {
+                    model: User,
+                    attributes: ['name', 'id']
+                  },
+                ],
+              });
+              const post = postData.get({ plain: true });
+              res.render('edit-post', { post, logged_in: req.session.logged_in });
+            } catch (err) {
               console.log(err);
               res.status(500).json(err)
-            })
+            }
           });
 
 module.exports = router

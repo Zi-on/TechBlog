@@ -2,17 +2,16 @@ const editPost = async (event) => {
     event.preventDefault();
     const title = document.querySelector("#title").value.trim();
     const body = document.querySelector("#body").value.trim();
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-      ];
+    const id = document.getElementById('post-id');
+    const newId = id.getAttribute('value');
 
     console.log(title);
     console.log(body);
-    const response = await fetch(`api/posts/${id}`, {
+    const response = await fetch(`api/posts/${newId}`, {
         method: 'PUT',
         body: JSON.stringify({
-            "title": title,
-            "body": body,
+            "title": `${title}`,
+            "body": `${body}`,
         }),
         headers: {
             'content-type': 'application/json'
@@ -25,4 +24,4 @@ const editPost = async (event) => {
     }
 }
 
-document.getElementById('#editBtn').addEventListener('submit', editPost)
+document.querySelector('#editBtn').addEventListener('submit', editPost)
