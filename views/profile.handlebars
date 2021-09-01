@@ -6,17 +6,17 @@
 </div>
 
   <div class="col-md-6 project-list">
-    <h3>Posts:</h3>
+    <h3>Your Posts:</h3>
 
     {{#each user.posts as |post|}}
 
-<div class="card text-center new-post">
+<div class="card text-center new-post bg-warning">
  
   <div class="card-body">
     <h5 class="card-title" id="title">{{post.title}}</h5>
     <p class="card-text" id="body">{{post.body}}</p>
-    <a href="#" class="btn-primary deleteBtn" type="button" data-id="{{post.id}}">Delete</a>
-    <a href="/edit-post/{{post.id}}" class="btn-primary"" type="submit" >Edit</a>
+    <a href="#" class="btn-primary deleteBtn bg-danger p-1" type="button" data-id="{{post.id}}">Delete</a>
+    <a href="/edit-post/{{post.id}}" class="btn-primary bg-success p-1" type="submit" >Edit</a>
   </div>
 </div>
 {{/each}}

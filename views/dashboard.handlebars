@@ -7,14 +7,14 @@
     {{#each posts as |post|}}
 <div class="card text-center">
  
-  <div class="card-body">
+  <div class="card-body bg-info">
     <h5 class="card-title" id="title">{{post.title}}</h5>
     <p class="card-text" id="body">{{post.body}}</p>
   </div>
-  <div class="card-footer text-muted" id="name">
+  <div class="card-footer text-muted bg-primary text-white" id="name">
     created by: {{user.name}}
   </div>
-  <a href="/comment/{{post.id}}/">Comments({{post.comments.length}})</a>
+  <a href="/comment/{{post.id}}/" class="bg-primary text-white p-1">Comments({{post.comments.length}})</a>
 </div>
 {{/each}}
 {{/if}}

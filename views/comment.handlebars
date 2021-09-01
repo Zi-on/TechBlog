@@ -1,32 +1,37 @@
 <div class="card text-center">
-  <div class="card-body">
+  <div class="card-body bg-success">
     <h5 class="card-title" id="title">{{post.title}}</h5>
     <p class="card-text" id="body">{{post.body}}</p>
   </div>
-   <div class="card-footer text-muted" id="name">
+   <div class="card-footer text-muted bg-dark text-white" id="name">
     created by: {{post.user.name}}
   </div>
 </div>
     
-<div class="card text-center">
-  <div class="card-body">
-    <h5 class="card-title" id="title">{{post.comment.text}}</h5>
+    {{#each post.comments as |comment|}}
+
+<div class="card text-center new-post">
+  <div class="card-body bg-info">
+    <h5 class="card-title" id="title">{{comment.text}}</h5>
+
   </div>
-   <div class="card-footer text-muted" id="name">
-    created by: {{post.comments.user_id}}
+    <div class="card-footer text-muted bg-dark text-white">
+    comment by: {{comment.user.name}}
   </div>
 </div>
-
+{{/each}}
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <form class="form new-project-form">
+    <form class="form new-project-form" post-id="{{post.id}}" user-id="{{post.user_id}}">
       <div class="form-group">
         <label for="post-title" >Comment:</label>
-        <input class="form-input" type="text" id="title" name="post-comment" />
+        <input class="form-input" type="text" id="title" name="comment-text" />
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary editBtn" id="editBtn">Post Comment</button>
       </div>
     </form>
   </div>
+
+  <script src="/js/comment.js"></script>
