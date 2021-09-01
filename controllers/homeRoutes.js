@@ -211,4 +211,30 @@ router.get('/signup', (req, res) => {
             }
           });
 
+          router.get('/comment/:id', withAuth, async (req, res) => {
+            try {
+              const postData = await Post.findByPk(req.params.id, {
+                include: [
+                  {
+                    model: User,
+                    attributes: ['name', 'id']
+                  },
+                  {
+                    model: Comment,
+                    attributes: ['text', 'user_id', 'post_id'],
+                    include: {
+                      model: User,
+                      attributes: ['name']
+                    }
+                  },
+                ],
+              });
+              const post = postData.get({ plain: true });
+              res.render('comment', { post, logged_in: req.session.logged_in });
+            } catch (err) {
+              console.log(err);
+              res.status(500).json(err)
+            }
+          });
+
 module.exports = router

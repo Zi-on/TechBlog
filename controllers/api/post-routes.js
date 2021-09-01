@@ -15,17 +15,26 @@ router.get('/', async (req, res) => {
     }
 });
 
-// router.get('/profile', async (req, res) => {
-//     try {
-//         const postData = await Post.findAll({
-//             include: [{model: User, attributes: ['name']},
-//             {model: Comment, attributes: ['id', 'text', 'post_id', 'user_id'], include: [{model: User, attributes: ['name']}]}]
-//         });
-//         res.status(200).json(postData)
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+router.get('/:id', async (req, res) => {
+    try {
+      const postData = await Post.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['name']
+          },
+          {
+              model: Comment,
+              attributes: ['text', 'post_id', 'user_id']
+          }
+        ],
+      });
+      res.status(200).json(postData)
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err)
+    }
+  });
 
 router.post('/', async (req, res) => {
     try {
