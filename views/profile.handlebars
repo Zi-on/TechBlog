@@ -8,7 +8,7 @@
   <div class="col-md-6 project-list">
     <h3>Posts:</h3>
 
-    {{#each posts as |post|}}
+    {{#each user.posts as |post|}}
 
 <div class="card text-center new-post">
  
@@ -17,9 +17,6 @@
     <p class="card-text" id="body">{{post.body}}</p>
     <a href="#" class="btn-primary deleteBtn" type="button" data-id="{{post.id}}">Delete</a>
     <a href="/edit-post/{{post.id}}" class="btn-primary"" type="submit" >Edit</a>
-  </div>
-  <div class="card-footer text-muted" id="name">
-    created by: {{user.name}}
   </div>
 </div>
 {{/each}}

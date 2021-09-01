@@ -7,20 +7,20 @@ const { post } = require('./api');
 router.get('/', withAuth, async (req, res) => {
     try {
       // Get all projects and JOIN with user data
-      const userData = await User.findByPk(req.params.id, {
+      const userData = await User.findAll({
         include: [
           {
             model: Post,
             attributes: ['id', 'title', 'body', 'user_id'],
           },
-          {
-            model: Comment,
-            attributes: ['id', 'text', 'user_id', 'post_id'],
-            include: {
-                model: User,
-                attributes: ['name']
-            }
-          }
+          // {
+          //   model: Comment,
+          //   attributes: ['id', 'text', 'user_id', 'post_id'],
+          //   include: {
+          //       model: User,
+          //       attributes: ['name']
+          //   }
+          // }
         ],
       });
   
@@ -40,7 +40,7 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     const id = req.params.id;
-    res.redirect(`/profile/${id}`);
+    res.redirect(`/profile/`);
     return;
   }
   res.render('login', {
@@ -51,7 +51,7 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
       const id = req.params.id
-      res.redirect(`profile/${id}`);
+      res.redirect(`profile`);
       return;
     }
     res.render('signup', {
@@ -71,7 +71,7 @@ router.get('/signup', (req, res) => {
         include: [
           {
             model: User,
-            attributes: ['name'],
+            attributes: ['name', 'id'],
           },
           {
             model: Comment,
@@ -97,9 +97,9 @@ router.get('/signup', (req, res) => {
     }
   });
 
-  router.get('/profile/:id', withAuth, async (req, res) => {
+  router.get('/profile', withAuth, async (req, res) => {
     try {
-      const userData = await User.findByPk(req.params.id, {
+      const userData = await User.findByPk(req.session.user_id, {
         include: [{
           model: Post,
           attributes: ['id', 'title', 'body'],
@@ -111,7 +111,7 @@ router.get('/signup', (req, res) => {
       console.log(err);
       res.status(500).json(err)
     }
-  })
+  });
  
       // Get all projects and JOIN with user data
       // router.get('/profile', async (req, res) => {
