@@ -1,17 +1,16 @@
 const editPost = async (event) => {
     event.preventDefault();
-    const title = document.querySelector("#title").value.trim();
-    const body = document.querySelector("#body").value.trim();
-    const id = document.getElementById('post-id');
-    const newId = id.getAttribute('value');
+    const title = document.querySelector('input[name="post-title"]').value;
+    const body = document.querySelector('input[name="post-body"]').value;
+    const id = event.target.getAttribute('post-id');
 
-    console.log(title);
-    console.log(body);
-    const response = await fetch(`api/posts/${newId}`, {
+    console.log("hello");
+    console.log(body, title, id);
+    const response = await fetch(`/api/posts/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            "title": `${title}`,
-            "body": `${body}`,
+            "title": title,
+            "body": body,
         }),
         headers: {
             'content-type': 'application/json'
@@ -24,4 +23,4 @@ const editPost = async (event) => {
     }
 }
 
-document.querySelector('#editBtn').addEventListener('submit', editPost)
+document.querySelector('.new-project-form').addEventListener('submit', editPost)

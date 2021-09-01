@@ -1,15 +1,15 @@
 <div class="row mt-4">
   <div class="col-md-6">
     <h3>Edit post:</h3>
-    <a id="post-id" value="{{post.id}}"></a>
-    <form class="form new-project-form">
+    <form class="form new-project-form" post-id="{{post.id}}">
       <div class="form-group">
+    
         <label for="post-title" >title:{{post.title}}</label>
-        <input class="form-input" type="text" id="title" />
+        <input class="form-input" type="text" id="title" name="post-title" />
       </div>
       <div class="form-group">
         <label for="post-body">body:{{post.body}}</label>
-        <input class="form-input" type="text" id="body"/>
+        <input class="form-input" type="text" id="body" name="post-body" />
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary editBtn" id="editBtn">Edit post</button>
