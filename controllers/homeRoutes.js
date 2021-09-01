@@ -13,14 +13,14 @@ router.get('/', withAuth, async (req, res) => {
             model: Post,
             attributes: ['id', 'title', 'body', 'user_id'],
           },
-          // {
-          //   model: Comment,
-          //   attributes: ['id', 'text', 'user_id', 'post_id'],
-          //   include: {
-          //       model: User,
-          //       attributes: ['name']
-          //   }
-          // }
+          {
+            model: Comment,
+            attributes: ['id', 'text', 'user_id', 'post_id'],
+            include: {
+                model: User,
+                attributes: ['name']
+            }
+          }
         ],
       });
   

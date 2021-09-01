@@ -40,4 +40,4 @@
 
 ## Heroku-App
 
-[tech-blog](https://frozen-gorge-64664.herokuapp.com/)
+[tech-blog](https://frozen-gorge-64664.herokuapp.com/login)
